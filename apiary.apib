@@ -4,7 +4,7 @@ HOST: http://api.digitwalk.com
 # AIO-dashboard-API
 
 
-## OverviewApp [/overview/{action}/{?token,projects,start,stop,geo,x,y}]
+## OverviewApp [/overview/{action}{?token,projects,start,stop,geo,x,y}]
 ###  LoadOverview [GET]
 + Parameters
     + action (String) - actionname of the OverviewApp
@@ -17,7 +17,7 @@ HOST: http://api.digitwalk.com
     + y(number) - the bubblechart y settings
 + Response 200 (application/json)
 
-        [   action: loadWidgetAndChart
+        [   action: "loadWidgetAndChart"
             {
                 CompositeWidget: {
                   cards: [
@@ -119,6 +119,34 @@ HOST: http://api.digitwalk.com
                     data: [6347, 2219, 7147, 7503, 7445, 7752, 7372, 6314, 2374]
                   }]
                 },
+                DotComparisionBubbleChart: {
+                  xAxis: {
+                    title: {
+                      text: '入店量（人次）'
+                    }
+                  },
+                  yAxis: {
+                    title: {
+                      text: '客流量（人次）'
+                    },
+                    maxPadding: 0.2,
+                  },
+                  series: [{
+                    data: [
+                        { x: 95, y: 95, shortname: 'BE', name: '中山一店' },
+                        { x: 86.5, y: 102.9, shortname: 'DE', name: '徐汇二店' },
+                        { x: 80.8, y: 91.5, shortname: 'FI', name: '莘庄一店' },
+                        { x: 80.4, y: 102.5, shortname: 'NL', name: '徐汇二店' },
+                        { x: 80.3, y: 86.1, shortname: 'SE', name: '徐汇二点' }
+                    ]
+                  }]
+                }
+            }
+        ]
++ Response 201 (application/json)
+
+        [   action: "loadBubbleChart"
+            {
                 DotComparisionBubbleChart: {
                   xAxis: {
                     title: {
