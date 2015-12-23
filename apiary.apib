@@ -1,58 +1,147 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://api.digitwalk.com
 
-# candy
+# AIO-dashboard-API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
 
-## Questions Collection [/questions]
+
+## OverviewApp [/overview/{action}/{?token,projects,start,stop,geo,x,y}]
+### loadWidgetAndChart[GET]
++ Parameters
+    + action (String) - actionname of the OverviewApp
+    + token (String) - verification of the user catched from
+    + projects(number) - the project unique id
+    + start(datetime) - the start time of time period
+    + stop(sdatetime) - the stop time of time period
+    + geo(number) - the geosettings unique number
+    + x(number) - the bubblechart x settings
+    + y(number) - the bubblechart y settings
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                CompositeWidget: {
+                  cards: [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### aaa[GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                      title: '客流量/人次',
+                      text: 90262,
+                      ratio: -79.8
+                    },
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                      title: '客流量/人数',
+                      text: 69277
+                    },
+                    {
+                      title: '入店率',
+                      text: 20.2,
+                      ratio: -79.8
+                    },
+                    {
+                      title: '新客户/人次',
+                      text: 4353,
+                      ratio: 15.4
+                    },
+                    {
+                      title: '新客户/人数',
+                      text: 34444
+                    },
+                    {
+                      title: '驻店时间',
+                      text: 2700,
+                      ratio: -10.8
+                    },
+                    {
+                      title: '老客户/人次',
+                      text: 19495,
+                      ratio: 10.8
+                    },
+                    {
+                      title: '老客户/人数',
+                      text: 14581
+                    },
+                    {
+                      title: '深访率',
+                      text: 41.6
                     }
-                ]
+                  ],
+                HighchartData: {
+                    series: [ {
+                      data: [ {
+                        name: '门店1',
+                        y: 56.33
+                      }, {
+                        name: '门店2',
+                        y: 24.03,
+                      }, {
+                        name: '门店3',
+                        y: 10.38
+                      }, {
+                        name: '门店4',
+                        y: 4.77
+                      }, {
+                        name: '门店5',
+                        y: 0.91
+                      }, {
+                        name: '门店6',
+                        y: 0.2
+                      }] }
+                    ]
+                 }
+                },
+                DwellTimeLineChart: {
+                  xAxis: {
+                    categories: ['2015/11/20', '2015/11/21', '2015/11/22', '2015/11/23', '2015/11/24', '2015/11/25',
+                          '2015/11/26', '2015/11/27', '2015/11/28', '2015/11/29']
+                  },
+                  series: [{
+                    name: '新顾客',
+                    data: [901, 853, 806, 940, 813, 751, 752, 811, 814, 856]
+                  }, {
+                    name: '老顾客',
+                    data: [2405, 2345, 3300, 1921, 2591, 2429, 2347, 2177, 2705, 3888]
+                  }]
+                },
+                DayPvBarChart: {
+                  xAxis: {
+                    categories: [
+                      '2015/11/20',
+                      '2015/11/21',
+                      '2015/11/22',
+                      '2015/11/23',
+                      '2015/11/24',
+                      '2015/11/25',
+                      '2015/11/26',
+                      '2015/11/27',
+                      '2015/11/28',
+                      '2015/11/29',
+                    ]
+                  },
+                  series: [{
+                    data: [6347, 2219, 7147, 7503, 7445, 7752, 7372, 6314, 2374]
+                  }]
+                },
+                DotComparisionBubbleChart: {
+                  xAxis: {
+                    title: {
+                      text: '入店量（人次）'
+                    }
+                  },
+                  yAxis: {
+                    title: {
+                      text: '客流量（人次）'
+                    },
+                    maxPadding: 0.2,
+                  },
+                  series: [{
+                    data: [
+                        { x: 95, y: 95, shortname: 'BE', name: '中山一店' },
+                        { x: 86.5, y: 102.9, shortname: 'DE', name: '徐汇二店' },
+                        { x: 80.8, y: 91.5, shortname: 'FI', name: '莘庄一店' },
+                        { x: 80.4, y: 102.5, shortname: 'NL', name: '徐汇二店' },
+                        { x: 80.3, y: 86.1, shortname: 'SE', name: '徐汇二点' }
+                    ]
+                  }]
+                }
             }
         ]
 
